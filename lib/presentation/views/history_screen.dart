@@ -55,6 +55,25 @@ class HistoryScreen extends StatelessWidget {
                         Text('Total: \$${item.totalSalary.toStringAsFixed(2)}'),
                       ],
                     ),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        //texto de aumento
+                        const Text(
+                          'Aumento:',
+                          style: TextStyle(fontSize: 14, color: Colors.grey),
+                        ),
+                        Text(
+                          '+ \$${item.increase.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            color: SchemaColor.secondaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
