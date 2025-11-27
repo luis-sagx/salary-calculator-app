@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salary_clean_architecture/presentation/viewmodels/operator_viewmodel.dart';
+import 'package:salary_clean_architecture/presentation/views/widget/calculate_button.dart';
+import 'package:salary_clean_architecture/presentation/views/widget/input_field.dart';
 import 'package:salary_clean_architecture/utils/themes/schema_color.dart';
 import 'package:salary_clean_architecture/utils/themes/typographic.dart';
 
@@ -115,30 +117,43 @@ class _CalculateScreenState extends State<CalculateScreen> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
-              TextFormField(
+              InputFieldU(
                 controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Nombre',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person),
-                ),
-                validator: (value) =>
-                    value!.isEmpty ? 'Ingrese el nombre' : null,
+                label: 'Nombre',
+                prefixIcon: Icons.person,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Ingrese el nombre';
+                  }
+                  if (value.trim().isEmpty) {
+                    return 'El nombre no puede estar vacío';
+                  }
+                  if (value.trim().length < 2) {
+                    return 'El nombre debe tener al menos 2 caracteres';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
-              TextFormField(
+              InputFieldU(
                 controller: _salaryController,
+                label: 'Salario Actual',
                 keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  labelText: 'Salario Actual',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.attach_money),
-                ),
+                prefixIcon: Icons.attach_money,
                 validator: (value) {
-                  if (value == null || value.isEmpty)
+                  if (value == null || value.isEmpty) {
                     return 'Ingrese el salario';
-                  if (double.tryParse(value) == null)
+                  }
+                  final salary = double.tryParse(value);
+                  if (salary == null) {
                     return 'Ingrese un número válido';
+                  }
+                  if (salary < 0) {
+                    return 'El salario no puede ser negativo';
+                  }
+                  if (salary == 0) {
+                    return 'El salario debe ser mayor a 0';
+                  }
                   return null;
                 },
               ),
@@ -174,22 +189,7 @@ class _CalculateScreenState extends State<CalculateScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: _calculate,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: SchemaColor.secondaryColor,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: Text(
-                  'Calcular Aumento',
-                  style: Typographic.textTheme.bodyMedium?.copyWith(
-                    color: SchemaColor.darkTextColor,
-                  ),
-                ),
-              ),
+              CalculateButton(text: 'Calcular Aumento', onPressed: _calculate),
             ],
           ),
         ),
