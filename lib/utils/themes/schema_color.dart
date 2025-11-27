@@ -8,8 +8,13 @@ class SchemaColor {
     50,
     47,
   ); // Rich Black
-  static const Color secondaryColor = Color(0xFFD4AF37); // Metallic Gold
-  static const Color accentColor = Color(0xFF757575); // Grey
+  static const Color secondaryColor = Color.fromARGB(
+    255,
+    217,
+    178,
+    53,
+  ); // Metallic Gold
+  static const Color accentColor = Color.fromARGB(255, 137, 91, 38); // Grey
   static const Color successColor = Color(0xFF388E3C); // Dark Green
   static const Color errorColor = Color(0xFFD32F2F); // Dark Red
   static const Color backgroundColor = Color(0xFFFAFAFA); // Off White

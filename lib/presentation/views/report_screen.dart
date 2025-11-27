@@ -96,7 +96,7 @@ class ReportScreen extends StatelessWidget {
               const Icon(
                 Icons.picture_as_pdf,
                 size: 100,
-                color: SchemaColor.primaryColor,
+                color: SchemaColor.accentColor,
               ),
               const SizedBox(height: 30),
               Text(

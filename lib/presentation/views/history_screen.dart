@@ -68,8 +68,8 @@ class HistoryScreen extends StatelessWidget {
                           '+ \$${item.increase.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: SchemaColor.secondaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
                           ),
                         ),
                       ],
